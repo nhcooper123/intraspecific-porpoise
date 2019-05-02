@@ -75,7 +75,7 @@ intra_pca$pc.summary
 pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.scores)
 
 # Merge with metadata
-pc_data <- full_join(metadata, pc_scores, by = c( = filename))
+pc_data <- full_join(metadata, pc_scores, by = c(Taxon = filename))
 
 # Write to file
 write.csv(IV_pca$pc.scores, file = here("IV_pcscores.csv")) 
