@@ -76,4 +76,4 @@ pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.s
 pc_data <- full_join(metadata, pc_scores, by = "filename")
 
 # Write to file
-write.csv(pc_data, file = here("data/porpoise-data.csv")) 
+write_csv(pc_data, path = here("data/porpoise-data.csv")) 
