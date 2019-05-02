@@ -20,7 +20,7 @@ n.landmarks <- 361
 n.dim <- 3
 
 # List .pts files
-ptslist <- list.files(here("data/landmark-data"), pattern = ".pts")
+ptslist <- list.files(here("raw-data/landmark-data"), pattern = ".pts")
 
 # Create empty array
 ptsarray <- array(dim = c(n.landmarks, n.dim, length(ptslist)))
@@ -29,7 +29,7 @@ ptsarray <- array(dim = c(n.landmarks, n.dim, length(ptslist)))
 for (i in 1:length(ptslist)) {
   ptsarray[, , i] <-
     as.matrix(read_table(
-      file = paste0(here("data/landmark-data/"), ptslist[i]),
+      file = paste0(here("raw-data/landmark-data/"), ptslist[i]),
       skip = 2,
       col_names = FALSE,
       col_types = cols(X1 = col_skip()),
@@ -47,9 +47,9 @@ dimnames(ptsarray)[[3]] <- ptslist
 # Input additional data
 #-----------------------
 # Semilandmark curves
-slidematrix <- as.matrix(read_csv(here("data/curves.csv")))
+slidematrix <- as.matrix(read_csv(here("raw-data/curves.csv")))
 # Metadata for taxon names etc.
-metadata <- read_csv(here("data/metadata.csv"))
+metadata <- read_csv(here("raw-data/metadata.csv"))
 
 #--------------------------------------------------------
 # Generalised Procrustes Analysis
@@ -75,7 +75,7 @@ intra_pca$pc.summary
 pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.scores)
 
 # Merge with metadata
-pc_data <- full_join(metadata, pc_scores, by = c(Taxon = filename))
+pc_data <- full_join(metadata, pc_scores, by = filename)
 
 # Write to file
-write.csv(IV_pca$pc.scores, file = here("IV_pcscores.csv")) 
+write.csv(pc_data, file = here("data/porpoise-data.csv")) 
