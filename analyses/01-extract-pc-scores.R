@@ -39,8 +39,6 @@ for (i in 1:length(ptslist)) {
 # To ensure everything matches up to metadata
 # add the names of the .pts files to dim names
 dimnames(ptsarray)[[3]] <- ptslist
-  
-#ptsarray <- ptsarray[ , , -15] #We originally removed this specimen NHMUK_1992.263 
 
 #-----------------------
 # Input additional data
@@ -56,11 +54,12 @@ metadata <- read_csv(here("raw-data/metadata.csv"))
 #--------------------------------------------------------
 intra_gpa <- gpagen(ptsarray, curves = slidematrix)
 
-# Plot the GPA landmarks
+# Plot the GPA landmarks if required
 # plot(intra_gpa)
 
 #--------------------------------
 # Principal Components Analysis
+# also creates a plot
 #-------------------------------
 intra_pca <- plotTangentSpace(intra_gpa$coords, legend = TRUE, label = TRUE,
                               warpgrids = FALSE)
@@ -74,7 +73,7 @@ intra_pca$pc.summary
 pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.scores)
 
 # Merge with metadata
-pc_data <- full_join(metadata, pc_scores, by = filename)
+pc_data <- full_join(metadata, pc_scores, by = "filename")
 
 # Write to file
 write.csv(pc_data, file = here("data/porpoise-data.csv")) 
