@@ -9,9 +9,6 @@
 library(here)
 library(geomorph)
 library(tidyverse)
-library(patchwork)
-library(ggrepel)
-
 #--------------------------------------------
 # Input data
 #--------------------------------------------
@@ -43,33 +40,4 @@ pc_data3 <- filter(pc_data,
 model3 <- manova(as.matrix(pc_data3[, 6:21]) ~ group, data = pc_data3)
 anova(model3)
 
-#--------------------------------------------
-# PC plots 
-#--------------------------------------------
-# Add labels
-my_labels <- pc_data$taxon
-my_labels <- str_replace(my_labels, "Phocoena_phocoena", NA_character_)
 
-p1 <-
-  ggplot(pc_data3, aes(x = PC1, y = PC2, col = group1)) +
-  geom_point(size = 2, alpha = 0.8) +
-  # scale_color_manual(values = c("#FF1BB3","green","#99554D")) +
-  theme_classic(base_size = 14) +
-  theme(legend.position = "none")
-
-p2 <-
-  ggplot(pc_data, aes(x = PC1, y = PC3, col = group1)) +
-  geom_point(size = 2, alpha = 0.8) +
-  # scale_color_manual(values = c("#FF1BB3","green","#99554D")) +
-  theme_classic(base_size = 14) +
-  theme(legend.position = "none")
-
-p3 <-
-  ggplot(pc_data, aes(x = PC2, y = PC3, col = group1)) +
-  geom_point(size = 2, alpha = 0.8) +
-  # scale_color_manual(values = c("#FF1BB3","green","#99554D")) +
-  theme_classic(base_size = 14) +
-  theme(legend.position = "none")
-
-
-(p1 + p2) / (p3)
