@@ -99,13 +99,143 @@ grid.arrange(p1, p2, p3, nrow = 2)
 
 ggsave(here("outputs/PC-polygon-plots-all.png"))
 
+# Subset the data to remove the extinct species
+pc_data2 <- filter(pc_data, type == "living")
+
+# Make hulls
+# Note there are only two living species so cannot get a hull for these
+# Make empty output lists
+hulls_12 <- list()
+hulls_13 <- list()
+hulls_23 <- list()
+
+# Make hulls
+for(i in 1:2){
+  hulls_12[[i]] <- make.hull12(pc_data2[pc_data2$group == unique(pc_data2$group)[i], ])
+}
+
+for(i in 1:2){
+  hulls_13[[i]] <- make.hull13(pc_data2[pc_data2$group == unique(pc_data2$group)[i], ])
+}
+
+for(i in 1:2){
+  hulls_23[[i]] <- make.hull23(pc_data2[pc_data2$group == unique(pc_data2$group)[i], ])
+}
+
+# Add groupnames
+names(hulls_12) <- unique(pc_data2$group)
+names(hulls_13) <- unique(pc_data2$group)
+names(hulls_23) <- unique(pc_data2$group)
+
+p1 <-
+  ggplot(pc_data2, aes(x = PC1, y = PC2, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_12[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2)
+
+p2 <-
+  ggplot(pc_data2, aes(x = PC1, y = PC3, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_13[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2)
+
+p3 <-
+  ggplot(pc_data2, aes(x = PC2, y = PC3, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_23[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2)
+
+grid.arrange(p1, p2, p3, nrow = 2)
+
+ggsave(here("outputs/PC-polygon-plots-living.png"))
+
+# Subset the data to remove the non P.p living species
+pc_data3 <- filter(pc_data, 
+                   taxon != "Phocoena_sinus" &
+                     taxon != "Phocoena_dioptrica")
+
+# Make hulls
+# Make empty output lists
+hulls_12 <- list()
+hulls_13 <- list()
+hulls_23 <- list()
+
+# Make hulls
+for(i in 1:2){
+  hulls_12[[i]] <- make.hull12(pc_data3[pc_data3$group == unique(pc_data3$group)[i], ])
+}
+
+for(i in 1:2){
+  hulls_13[[i]] <- make.hull13(pc_data3[pc_data3$group == unique(pc_data3$group)[i], ])
+}
+
+for(i in 1:2){
+  hulls_23[[i]] <- make.hull23(pc_data3[pc_data3$group == unique(pc_data3$group)[i], ])
+}
+
+# Add groupnames
+names(hulls_12) <- unique(pc_data3$group)
+names(hulls_13) <- unique(pc_data3$group)
+names(hulls_23) <- unique(pc_data3$group)
+
+p1 <-
+  ggplot(pc_data3, aes(x = PC1, y = PC2, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_12[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2) +
+  geom_polygon(data = hulls_12[["Phocoenidae"]], aes(x = x, y = y), 
+               col = "#911eb4", fill = "#911eb4", alpha = 0.2) 
+
+p2 <-
+  ggplot(pc_data3, aes(x = PC1, y = PC3, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_13[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2) +
+  geom_polygon(data = hulls_13[["Phocoenidae"]], aes(x = x, y = y), 
+               col = "#911eb4", fill = "#911eb4", alpha = 0.2) 
+
+p3 <-
+  ggplot(pc_data3, aes(x = PC2, y = PC3, col = group)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c("#008080", "#911eb4")) +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  geom_vline(xintercept = 0, linetype = 2) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_polygon(data = hulls_23[["Phocoena_phocoena"]], aes(x = x, y = y), 
+               col = "#008080", fill = "#008080", alpha = 0.2) +
+  geom_polygon(data = hulls_23[["Phocoenidae"]], aes(x = x, y = y), 
+               col = "#911eb4", fill = "#911eb4", alpha = 0.2) 
 
 
+grid.arrange(p1, p2, p3, nrow = 2)
 
-
-
-
-
+ggsave(here("outputs/PC-polygon-plots-fossil.png"))
 #-------------------------------------------
 # Density plots
 #--------------------------------------------
