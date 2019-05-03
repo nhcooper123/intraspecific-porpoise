@@ -72,8 +72,8 @@ write_csv(path = here("outputs/MANOVA-results.csv"), output)
 #--------------------------------------------
 # Quick function to run all anovas
 fit.anova <- function(pc, data, grouping.var) {
-  pc_ <- pull(pc_data, pc)
-  grouping.var_ <- pull(pc_data, grouping.var)
+  pc_ <- pull(data, pc)
+  grouping.var_ <- pull(data, grouping.var)
   model <- lm(pc_ ~ grouping.var_, data = data)
   out <- tidy(anova(model))
   return(out)
