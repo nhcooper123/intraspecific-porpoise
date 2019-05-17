@@ -11,6 +11,8 @@ library(here)
 library(geomorph)
 library(tidyverse)
 library(broom)
+
+source("functions/intra-functions.R")
 #--------------------------------------------
 # Input data
 #---------------------------------------------------------
@@ -44,14 +46,6 @@ write_csv(path = here("outputs/MANOVA-results.csv"), output)
 #--------------------------------------------
 # Fit ANOVAs for each individual PC
 #--------------------------------------------
-# Quick function to run all anovas
-fit.anova <- function(pc, data, grouping.var) {
-  pc_ <- pull(data, pc)
-  grouping.var_ <- pull(data, grouping.var)
-  model <- lm(pc_ ~ grouping.var_, data = data)
-  out <- tidy(anova(model))
-  return(out)
-}
 
 # List names of first 39 PCs
 pc_list <- names(pc_data)[7:45]
