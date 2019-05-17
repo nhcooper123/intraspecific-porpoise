@@ -1,6 +1,5 @@
-# Intraspecific variation in Phocoena phocoena 
-# Maria Clara Iruzun Martins April 2019
-# Modified by Natalie Cooper May 2019
+# Extract PC scores for odontocetes
+# May 2019
 #------------------------------------
 
 #------------------------------------
@@ -9,6 +8,16 @@
 library(here)
 library(geomorph)
 library(tidyverse)
+#-------------------------------------
+# Read in metadata
+#-------------------------------------
+ds <- read_csv("raw-data/echo-metadata.csv")
+
+# Exclude mysticetes and fossil species
+ds <-
+  ds %>%
+  filter(family != "Balaenidae" & family != "Balaenopteridae" 
+         & status != "fossil")
 
 #--------------------------------------------
 # Input landmark data
@@ -18,8 +27,9 @@ library(tidyverse)
 n.landmarks <- 361
 n.dim <- 3
 
-# List .pts files
-ptslist <- list.files(here("raw-data/landmark-data"), pattern = ".pts")
+# List .pts files 
+ptslist <- ds %>%
+  pull(filename)
 
 # Create empty array
 ptsarray <- array(dim = c(n.landmarks, n.dim, length(ptslist)))
@@ -45,8 +55,6 @@ dimnames(ptsarray)[[3]] <- ptslist
 #-----------------------
 # Semilandmark curves
 slidematrix <- as.matrix(read_csv(here("raw-data/curves.csv")))
-# Metadata for taxon names etc.
-metadata <- read_csv(here("raw-data/metadata.csv"))
 
 #--------------------------------------------------------
 # Generalised Procrustes Analysis
@@ -65,7 +73,7 @@ intra_pca <- plotTangentSpace(intra_gpa$coords, legend = TRUE, label = TRUE,
                               warpgrids = FALSE)
 
 # Look at how PCs explain variance
-# Here we need 16 PCs to explain > 95%
+# Here we need 39 PCs to explain > 95%
 intra_pca$pc.summary
 
 # Extract PC scores and make .pts file name into
@@ -73,7 +81,11 @@ intra_pca$pc.summary
 pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.scores)
 
 # Merge with metadata
-pc_data <- full_join(metadata, pc_scores, by = "filename")
+pc_data <- full_join(ds, pc_scores, by = "filename")
 
 # Write to file
-write_csv(pc_data, path = here("data/porpoise-data.csv")) 
+write_csv(pc_data, path = here("data/odontocete-data.csv")) 
+
+# Quick plot
+ggplot(pc_data, aes(PC1, PC2, colour = group2)) +
+  geom_point()
