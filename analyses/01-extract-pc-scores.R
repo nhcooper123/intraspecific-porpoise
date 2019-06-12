@@ -1,4 +1,5 @@
 # Extract PC scores for odontocetes
+# Using 3D landmark data
 # May 2019
 #------------------------------------
 
