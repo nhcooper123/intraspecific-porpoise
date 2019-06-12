@@ -1,5 +1,5 @@
 # Intraspecific variation in Phocoena phocoena
-Author(s): Maria Clara Iruzun Martins, Travis Park and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)  
+Author(s): Maria Clara Iruzun Martins, Travis Park, Rachael Racicot and [Natalie Cooper](mailto:natalie.cooper.@nhm.ac.uk)  
 
 This repository contains all the code and data used in the [paper](link).
 
@@ -14,12 +14,13 @@ These analyses are based on CT scans of cochlea specimens from natural history c
 All the CT scans are available from the [NHM Data Portal](link). ???
 MCIR and TP then added landmarks to these to create `.pts` files that are used in all subsequent analyses. 
 The `.pts` files are available in this repo in the `rawdata/landmark-data` folder but can also be downloaded from the [NHM Data Portal](link). ???
+Linear measurements are available in the `rawdata/` folder or can also be downloaded from the [NHM Data Portal](link). ???
 
 If you use the data please cite as follows: 
 > XXX
 
 ## Analyses
-All code used to run analyses and make figures is included in the `analyses/` folder. 
+All code used to run analyses and make figures is included in the `analyses/` folder. These rely on some functions in the `functions/` folder.
 
 * **01-extract-pc-scores.R** extracts the PC scores from the raw landmark data and creates `odontocete-data.csv` for use in later scripts.
 * **02-intraspecific-variation.R** fits MANOVA and ANOVAs to determine if *Phocoena phocoena* differ significantly from the other odontocetes.
