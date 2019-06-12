@@ -84,7 +84,7 @@ pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.s
 pc_data <- full_join(ds, pc_scores, by = "filename")
 
 # Write to file
-write_csv(pc_data, path = here("data/odontocete-data.csv")) 
+write_csv(pc_data, path = here("data/odontocete-data-landmarks.csv")) 
 
 # Quick plot
 ggplot(pc_data, aes(PC1, PC2, colour = group2)) +

@@ -1,5 +1,6 @@
 # PCA plots and density plots
 # for Phocoena phocoena vs other odontocetes
+# Using 3D landmark data
 # May 2019
 #-------------------------------------------
 
@@ -16,16 +17,22 @@ library(ggrepel)
 
 # Convex hulls functions
 source("functions/intra-functions.R")
+
+#--------------------------------------------
+# Input data
+#---------------------------------------------------------
+pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
+
 #-------------------------------------------
 # PC plots 
 #--------------------------------------------
 # Make hulls
 
-hulls_12 <- make_hull(pc_data, pc1 = 7, pc2 = 8, n = 2, grouping_var = 6)
-hulls_13 <- make_hull(pc_data, pc1 = 7, pc2 = 9, n = 2, grouping_var = 6)
-hulls_23 <- make_hull(pc_data, pc1 = 8, pc2 = 9, n = 2, grouping_var = 6)
-hulls_28 <- make_hull(pc_data, pc1 = 8, pc2 = 14, n = 2, grouping_var = 6)
-hulls_38 <- make_hull(pc_data, pc1 = 9, pc2 = 14, n = 2, grouping_var = 6)
+hulls_12 <- make_hull(pc_data, pc1 = 17, pc2 = 18, n = 2, grouping_var = 6)
+hulls_13 <- make_hull(pc_data, pc1 = 17, pc2 = 19, n = 2, grouping_var = 6)
+hulls_23 <- make_hull(pc_data, pc1 = 18, pc2 = 19, n = 2, grouping_var = 6)
+hulls_28 <- make_hull(pc_data, pc1 = 18, pc2 = 24, n = 2, grouping_var = 6)
+hulls_38 <- make_hull(pc_data, pc1 = 19, pc2 = 24, n = 2, grouping_var = 6)
 
 
 p1 <-
@@ -95,7 +102,7 @@ p5 <-
 
 all <- grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
 
-ggsave(all, filename = here("outputs/PC-polygon-plots.png"))
+ggsave(all, filename = here("outputs/PC-polygon-plots-landmarks.png"))
 #-------------------------------------------
 # Density plots
 #--------------------------------------------
@@ -120,4 +127,4 @@ px <-
   scale_color_manual(values = c("#008080", "#911eb4")) +
   xlab("Principal Component (PC) score")
 
-ggsave(px, filename = here("outputs/PC-density-plots.png"))
+ggsave(px, filename = here("outputs/PC-density-plots-landmarks.png"))

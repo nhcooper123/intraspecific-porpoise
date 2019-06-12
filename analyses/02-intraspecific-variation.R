@@ -1,6 +1,7 @@
 # Test whether intraspecific variation 
 # in Phocoena phocoena is higher/lower
 # than intraspecific variation
+# Using 3D landmark data
 # May 2019
 #------------------------------------
 
@@ -16,7 +17,7 @@ source("functions/intra-functions.R")
 #--------------------------------------------
 # Input data
 #---------------------------------------------------------
-pc_data <- read_csv(here("data/odontocete-data.csv"))
+pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
 
 #---------------------------------------------------------
 # MANOVAs
@@ -24,8 +25,8 @@ pc_data <- read_csv(here("data/odontocete-data.csv"))
 # is significantly less than within the clade
 #----------------------------------------------------------
 # Fit the model for all odontocetes
-# Column 7 = PC1, column 45 = PC39 (95% of variation)
-model1 <- manova(as.matrix(pc_data[, 7:45]) ~ group2, data = pc_data)
+# Column 17 = PC1, column 55 = PC39 (95% of variation)
+model1 <- manova(as.matrix(pc_data[, 17:55]) ~ group2, data = pc_data)
 # Look at overall model significance
 anova(model1)
 
@@ -41,14 +42,14 @@ output[1, "approxF"] <- anova(model1)$`approx F`[2]
 output[1, "p"] <- anova(model1)$`Pr(>F)`[2]
 
 # Write to file
-write_csv(path = here("outputs/MANOVA-results.csv"), output)
+write_csv(path = here("outputs/MANOVA-results-landmarks.csv"), output)
 
 #--------------------------------------------
 # Fit ANOVAs for each individual PC
 #--------------------------------------------
 
 # List names of first 39 PCs
-pc_list <- names(pc_data)[7:45]
+pc_list <- names(pc_data)[17:55]
 
 # Create an output file for three subsets
 output <- data.frame(array(dim = c(39, 5)))
@@ -65,4 +66,4 @@ for (i in seq_along(pc_list)){
   output[i, "p"] <- x$p.value[1]
 }
 
-write_csv(path = here("outputs/ANOVA-results.csv"), output)
+write_csv(path = here("outputs/ANOVA-results-landmarks.csv"), output)
