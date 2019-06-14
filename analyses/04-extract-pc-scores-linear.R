@@ -1,6 +1,9 @@
 # Extract PC scores for odontocetes
 # Using linear measurement data
 # June 2019
+
+# For now this deletes the specimens that are not included
+# in both datasets
 #------------------------------------
 
 #------------------------------------
@@ -18,8 +21,10 @@ ds <- read_csv("raw-data/echo-metadata.csv")
 ds <-
   ds %>%
   filter(family != "Balaenidae" & family != "Balaenopteridae" 
-         & status != "fossil")
-
+         & status != "fossil") %>%
+  # Remove for now...
+  filter(filename != "Globicephala-melas_NHMUK_CE1947.12.31.4_2.pts")
+  
 #--------------------------------------------
 # Input measurement data
 #--------------------------------------------
@@ -28,29 +33,35 @@ measure <- read_csv("raw-data/cochlea-measurements.csv")
 # Exclude maxRadius due to missing data
 measure <-
   measure %>%
-  select(-maxRadius)
+  select(-maxRadius) %>%
+  # remove for now
+  filter(specID != "NMNH572016" & specID !="NMNH571892" &
+         specID != "NMBC111425" & specID != "SDSNH21212")
 
 #--------------------------------
 # Principal Components Analysis
-# also creates a plot
+# Variables are scaled and centred
 #-------------------------------
-intra_pca <- princomp(measure[, 4:15])
-
-% May need to use logs or residuals or volume is too powerful
+intra_pca <- princomp(measure[, 4:15], cor = TRUE)
 
 # Look at how PCs explain variance
-# Here we need 39 PCs to explain > 95%
+# Here we need 6 PCs to explain > 95%
 summary(intra_pca)
 
 # Extract PC scores and make .pts file name into
 # a taxon column for combining with the metadata
-pc_scores <- data.frame(filename = rownames(intra_pca$pc.scores), intra_pca$pc.scores)
+pc_scores <- data.frame(specID = measure$specID, intra_pca$scores)
 
 # Merge with metadata
-pc_data <- full_join(ds, pc_scores, by = "filename")
+pc_data <- full_join(ds, pc_scores, by = "specID")
+
+# Rename Comp.1 to PC1 etc.
+pc_data <-
+  pc_data %>%
+  rename_at(vars(starts_with("Comp.")), funs(str_replace(., "Comp.", "PC")))
 
 # Write to file
-write_csv(pc_data, path = here("data/odontocete-data-landmarks.csv")) 
+write_csv(pc_data, path = here("data/odontocete-data-linear.csv")) 
 
 # Quick plot
 ggplot(pc_data, aes(PC1, PC2, colour = group2)) +
