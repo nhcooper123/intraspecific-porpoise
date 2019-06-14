@@ -28,11 +28,11 @@ pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
 #--------------------------------------------
 # Make hulls
 
-hulls_12 <- make_hull(pc_data, pc1 = 17, pc2 = 18, n = 2, grouping_var = 6)
-hulls_13 <- make_hull(pc_data, pc1 = 17, pc2 = 19, n = 2, grouping_var = 6)
-hulls_23 <- make_hull(pc_data, pc1 = 18, pc2 = 19, n = 2, grouping_var = 6)
-hulls_28 <- make_hull(pc_data, pc1 = 18, pc2 = 24, n = 2, grouping_var = 6)
-hulls_38 <- make_hull(pc_data, pc1 = 19, pc2 = 24, n = 2, grouping_var = 6)
+hulls_12 <- make_hull(pc_data, pc1 = 18, pc2 = 19, n = 2, grouping_var = 6)
+hulls_13 <- make_hull(pc_data, pc1 = 18, pc2 = 20, n = 2, grouping_var = 6)
+hulls_23 <- make_hull(pc_data, pc1 = 19, pc2 = 20, n = 2, grouping_var = 6)
+hulls_28 <- make_hull(pc_data, pc1 = 19, pc2 = 25, n = 2, grouping_var = 6)
+hulls_38 <- make_hull(pc_data, pc1 = 20, pc2 = 25, n = 2, grouping_var = 6)
 
 
 p1 <-
