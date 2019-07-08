@@ -14,12 +14,6 @@ library(tidyverse)
 #-------------------------------------
 ds <- read_csv("raw-data/echo-metadata.csv")
 
-# Exclude mysticetes and fossil species
-ds <-
-  ds %>%
-  filter(family != "Balaenidae" & family != "Balaenopteridae" 
-         & status != "fossil")
-
 #--------------------------------------------
 # Input landmark data
 # These are in a series of .pts files 
@@ -88,5 +82,5 @@ pc_data <- full_join(ds, pc_scores, by = "filename")
 write_csv(pc_data, path = here("data/odontocete-data-landmarks.csv")) 
 
 # Quick plot
-ggplot(pc_data, aes(PC1, PC2, colour = group2)) +
+ggplot(pc_data, aes(PC1, PC2, colour = group)) +
   geom_point()

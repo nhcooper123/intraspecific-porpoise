@@ -28,15 +28,15 @@ pc_data <- read_csv(here("data/odontocete-data-linear.csv"))
 #--------------------------------------------
 # Make hulls
 
-hulls_12 <- make_hull(pc_data, pc1 = 18, pc2 = 19, n = 2, grouping_var = 7)
-hulls_13 <- make_hull(pc_data, pc1 = 18, pc2 = 20, n = 2, grouping_var = 7)
-hulls_23 <- make_hull(pc_data, pc1 = 19, pc2 = 20, n = 2, grouping_var = 7)
-hulls_14 <- make_hull(pc_data, pc1 = 18, pc2 = 21, n = 2, grouping_var = 7)
-hulls_24 <- make_hull(pc_data, pc1 = 19, pc2 = 21, n = 2, grouping_var = 7)
+hulls_12 <- make_hull(pc_data, pc1 = 16, pc2 = 17, n = 2, grouping_var = 5)
+hulls_13 <- make_hull(pc_data, pc1 = 16, pc2 = 18, n = 2, grouping_var = 5)
+hulls_23 <- make_hull(pc_data, pc1 = 17, pc2 = 18, n = 2, grouping_var = 5)
+hulls_14 <- make_hull(pc_data, pc1 = 16, pc2 = 19, n = 2, grouping_var = 5)
+hulls_24 <- make_hull(pc_data, pc1 = 17, pc2 = 19, n = 2, grouping_var = 5)
 
 
 p1 <-
-  ggplot(pc_data, aes(x = PC1, y = PC2, col = group2)) +
+  ggplot(pc_data, aes(x = PC1, y = PC2, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -49,7 +49,7 @@ p1 <-
   ylim(-5, 5)
  
 p2 <-
-  ggplot(pc_data, aes(x = PC1, y = PC3, col = group2)) +
+  ggplot(pc_data, aes(x = PC1, y = PC3, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -62,7 +62,7 @@ p2 <-
   ylim(-5, 5)
 
 p3 <-
-  ggplot(pc_data, aes(x = PC2, y = PC3, col = group2)) +
+  ggplot(pc_data, aes(x = PC2, y = PC3, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -75,7 +75,7 @@ p3 <-
   ylim(-5, 5)
 
 p4 <-
-  ggplot(pc_data, aes(x = PC1, y = PC4, col = group2)) +
+  ggplot(pc_data, aes(x = PC1, y = PC4, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -88,7 +88,7 @@ p4 <-
   ylim(-5, 5)
 
 p5 <-
-  ggplot(pc_data, aes(x = PC2, y = PC4, col = group2)) +
+  ggplot(pc_data, aes(x = PC2, y = PC4, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -117,7 +117,7 @@ pc_dataX <-
 
 # Plot for all species in outgroup
 px <-
-  ggplot(pc_dataX, aes(x = score, fill = group2, col = group2)) +
+  ggplot(pc_dataX, aes(x = score, fill = group, col = group)) +
   geom_density(alpha = 0.5) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none",

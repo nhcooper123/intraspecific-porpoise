@@ -28,15 +28,15 @@ pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
 #--------------------------------------------
 # Make hulls
 
-hulls_12 <- make_hull(pc_data, pc1 = 18, pc2 = 19, n = 2, grouping_var = 7)
-hulls_13 <- make_hull(pc_data, pc1 = 18, pc2 = 20, n = 2, grouping_var = 7)
-hulls_23 <- make_hull(pc_data, pc1 = 19, pc2 = 20, n = 2, grouping_var = 7)
-hulls_28 <- make_hull(pc_data, pc1 = 19, pc2 = 25, n = 2, grouping_var = 7)
-hulls_38 <- make_hull(pc_data, pc1 = 20, pc2 = 25, n = 2, grouping_var = 7)
+hulls_12 <- make_hull(pc_data, pc1 = 16, pc2 = 17, n = 2, grouping_var = 5)
+hulls_13 <- make_hull(pc_data, pc1 = 16, pc2 = 18, n = 2, grouping_var = 5)
+hulls_23 <- make_hull(pc_data, pc1 = 17, pc2 = 18, n = 2, grouping_var = 5)
+hulls_28 <- make_hull(pc_data, pc1 = 17, pc2 = 23, n = 2, grouping_var = 5)
+hulls_38 <- make_hull(pc_data, pc1 = 18, pc2 = 23, n = 2, grouping_var = 5)
 
 
 p1 <-
-  ggplot(pc_data, aes(x = PC1, y = PC2, col = group2)) +
+  ggplot(pc_data, aes(x = PC1, y = PC2, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -49,7 +49,7 @@ p1 <-
   ylim(-0.15, 0.15)
 
 p2 <-
-  ggplot(pc_data, aes(x = PC1, y = PC3, col = group2)) +
+  ggplot(pc_data, aes(x = PC1, y = PC3, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -62,7 +62,7 @@ p2 <-
   ylim(-0.15, 0.15) 
 
 p3 <-
-  ggplot(pc_data, aes(x = PC2, y = PC3, col = group2)) +
+  ggplot(pc_data, aes(x = PC2, y = PC3, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -75,7 +75,7 @@ p3 <-
   ylim(-0.15, 0.15) 
 
 p4 <-
-  ggplot(pc_data, aes(x = PC2, y = PC8, col = group2)) +
+  ggplot(pc_data, aes(x = PC2, y = PC8, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -88,7 +88,7 @@ p4 <-
   ylim(-0.15, 0.15)
   
 p5 <-
-  ggplot(pc_data, aes(x = PC3, y = PC8, col = group2)) +
+  ggplot(pc_data, aes(x = PC3, y = PC8, col = group)) +
   geom_point(size = 2, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
@@ -110,14 +110,14 @@ ggsave(all, filename = here("outputs/PC-polygon-plots-landmarks.png"))
 pc_dataX <- 
   pc_data %>%
   gather(PC, score, PC1:PC9) %>%
-  select(taxon, group2, PC, score) %>%
-  mutate(group2 = paste(group2, sep = "_")) %>%
+  select(taxon, group, PC, score) %>%
+  mutate(group2 = paste(group, sep = "_")) %>%
   mutate(PC = factor(PC,  levels = c("PC1", "PC2", "PC3", "PC4", 
                                   "PC5", "PC6", "PC7", "PC8", "PC9")))
 
 # Plot for all species in outgroup
 px <-
-  ggplot(pc_dataX, aes(x = score, fill = group2, col = group2)) +
+  ggplot(pc_dataX, aes(x = score, fill = group, col = group)) +
   geom_density(alpha = 0.5) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none",

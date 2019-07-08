@@ -16,15 +16,6 @@ library(tidyverse)
 # Read in metadata
 #-------------------------------------
 ds <- read_csv("raw-data/echo-metadata.csv")
-
-# Exclude mysticetes and fossil species
-ds <-
-  ds %>%
-  filter(family != "Balaenidae" & family != "Balaenopteridae" 
-         & status != "fossil") %>%
-  # Remove for now...
-  filter(filename != "Globicephala-melas_NHMUK_CE1947.12.31.4_2.pts")
-  
 #--------------------------------------------
 # Input measurement data
 #--------------------------------------------
@@ -64,5 +55,5 @@ pc_data <-
 write_csv(pc_data, path = here("data/odontocete-data-linear.csv")) 
 
 # Quick plot
-ggplot(pc_data, aes(PC1, PC2, colour = group2)) +
+ggplot(pc_data, aes(PC1, PC2, colour = group)) +
   geom_point()
