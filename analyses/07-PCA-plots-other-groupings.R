@@ -106,3 +106,14 @@ p2 <-
   theme(legend.position = "none")
 
 p1 + p2
+
+#---------------------------------------------------------
+# MANOVAs
+# To determine if variation within hearing types
+# is significantly less than within the clade
+#----------------------------------------------------------
+# Fit the model for all odontocetes
+# Column 16 = PC1, column 54 = PC39 (95% of variation)
+model1 <- manova(cbind(as.matrix(pc_data1[, 16:54])) ~ group + group:hearingtype + hearingtype, data = pc_data)
+# Look at overall model significance
+summary(model1)
