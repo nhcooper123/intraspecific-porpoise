@@ -57,3 +57,26 @@ write_csv(pc_data, path = here("data/odontocete-data-linear.csv"))
 # Quick plot
 ggplot(pc_data, aes(PC1, PC2, colour = group)) +
   geom_point()
+
+#-------------------------------
+# Coefficients of variation
+#-------------------------------
+cv_fun <-
+  function(x){
+    (sd(x)/mean(x))*100
+  }
+
+cv <-
+  measure %>%
+  filter(taxon == "Phocoena_phocoena") %>%
+  summarise_if(is.numeric, cv_fun) %>%
+  mutate(group = "Phocoena_phocoena")
+
+cv2 <-
+  measure %>%
+  filter(taxon != "Phocoena_phocoena") %>%
+  summarise_if(is.numeric, cv_fun) %>%
+  mutate(group = "Other")
+
+
+write_csv(rbind(cv, cv2), path = here("outputs/coefficient-variation.csv")) 
