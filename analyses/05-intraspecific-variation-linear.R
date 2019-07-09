@@ -66,6 +66,8 @@ for (i in seq_along(pc_list)){
   output[i, "p"] <- x$p.value[1]
 }
 
+p.adjust(output$p, method = "bonferroni")
+
 write_csv(path = here("outputs/ANOVA-results-linear.csv"), output)
 
 #--------------------------------------------
