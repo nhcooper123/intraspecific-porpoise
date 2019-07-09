@@ -11,6 +11,7 @@
 library(here)
 library(tidyverse)
 library(broom)
+library(dispRity)
 
 source("functions/intra-functions.R")
 #--------------------------------------------
@@ -66,3 +67,15 @@ for (i in seq_along(pc_list)){
 }
 
 write_csv(path = here("outputs/ANOVA-results-linear.csv"), output)
+
+#--------------------------------------------
+# Disparity
+#--------------------------------------------
+matrix <- 
+  pc_data %>%
+  filter(group == "Phocoena_phocoena") %>%
+  select(PC1:PC12) %>%
+  as.matrix()
+
+sum(variances(matrix))
+median(centroids(matrix))
