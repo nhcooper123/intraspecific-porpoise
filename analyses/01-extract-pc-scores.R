@@ -84,3 +84,19 @@ write_csv(pc_data, path = here("data/odontocete-data-landmarks.csv"))
 # Quick plot
 ggplot(pc_data, aes(PC1, PC2, colour = group)) +
   geom_point()
+
+#--------------------------------------------
+# Fit Procrustes ANOVAs to coordinates
+#--------------------------------------------
+# Create geomorph dataframe of coordinates and group
+gdf <- geomorph.data.frame(intra_gpa, 
+                           group = ds$group)
+# Fit models
+# randomize raw values
+fit1 <- procD.lm(coords ~ group, 
+                 data = gdf, iter = 999, 
+                 RRPP = FALSE, print.progress = FALSE) 
+fit1
+
+# Randomize residuals result will be the same
+# as there is just one explanatory variable.
