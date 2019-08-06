@@ -1,5 +1,5 @@
 # Extract PC scores for subsets of Phocoena phocoena
-# 
+# Then perform ANOVAs and MANOVAs
 #------------------------------------
 source("functions/rarefy-functions.R")
 source("functions/intra-functions.R")
@@ -65,7 +65,8 @@ porpoises <- which(str_detect(dimnames(ptsarray)[[3]],
 #-----------------------------------------
 # This is a slightly lazy brute force way of doing it 
 # assuming that enough simulations will result in every
-# possible combination
+# possible combination and then afterwards omitting any
+# duplicated results.
 sims <- 100000
 
 # Create MANOVA output file
@@ -89,6 +90,15 @@ for(i in 1:sims){
   ANOVA_output <- fit_anova(pca, ANOVA_output, nporpoise)
 
 }  
+
+# Select only unique results
+MANOVA_output <-
+ MANOVA_output %>%
+ distinct()
+
+ANOVA_output <-
+  ANOVA_output %>%
+  distinct()
 
 # Write results to file
 write_csv(path = here("outputs/rarefied-MANOVA-results-landmarks.csv"), MANOVA_output)
