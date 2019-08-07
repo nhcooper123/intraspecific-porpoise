@@ -74,10 +74,11 @@ MANOVA_output <- create_MANOVA_output(length(out))
 for(i in 1:length(out)){
 
   # Save number of porpoises
-  nporpoise <- length(out[[1]])
+  nporpoise <- length(out[[i]])
   
   # Select required porpoises plus other whales from ptsarray
-  points <- select_porpoise(nporpoise, ptsarray, porpoises)
+  exclude <- setdiff(porpoises, out[[i]])
+  points <- ptsarray[, , -exclude]
   
   # GPA and PCA on the new rarefied dataset
   pca <- get_pcs(points, slidematrix, ds, nporpoise)
@@ -85,11 +86,6 @@ for(i in 1:length(out)){
   MANOVA_output <- fit_manova(pca, MANOVA_output, nporpoise)
 
 }  
-
-# Select only unique results
-MANOVA_output <-
- MANOVA_output %>%
- distinct()
 
 # Write results to file
 write_csv(path = here("outputs/rarefied-MANOVA-results-landmarks.csv"), MANOVA_output)
