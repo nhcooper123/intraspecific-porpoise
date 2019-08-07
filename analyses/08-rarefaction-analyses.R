@@ -57,26 +57,24 @@ slidematrix <- as.matrix(read_csv(here("raw-data/curves.csv")))
 porpoises <- which(str_detect(dimnames(ptsarray)[[3]], 
                    "Phocoena-phocoena") == TRUE)
 
+# Get all combinations
+out <- NULL
+for (z in 2:17) {
+out <- c(out, combn(porpoises, z, simplify = FALSE))
+}
 #----------------------------------------
 # Sample number of porpoises
 # and get PC values then run MANOVAs
 # and output stats
 #-----------------------------------------
-# This is a slightly lazy brute force way of doing it 
-# assuming that enough simulations will result in every
-# possible combination and then afterwards omitting any
-# duplicated results.
-sims <- 50000
-
 # Create MANOVA output file
-MANOVA_output <- create_MANOVA_output(sims)
+MANOVA_output <- create_MANOVA_output(length(out))
 
-set.seed(123)
+# Loop through combinations
+for(i in 1:length(out)){
 
-for(i in 1:sims){
-
-  # Pick a number between 2 and 17
-  nporpoise <- sample(2:17, 1)
+  # Save number of porpoises
+  nporpoise <- length(out[[1]])
   
   # Select required porpoises plus other whales from ptsarray
   points <- select_porpoise(nporpoise, ptsarray, porpoises)
