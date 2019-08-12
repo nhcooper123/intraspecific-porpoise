@@ -76,7 +76,9 @@ p1 <-
   geom_vline(xintercept = 0, linetype = 2) +
   geom_hline(yintercept = 0, linetype = 2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15)
+  ylim(-0.15, 0.15) +
+  xlab("PC1 (15.70%)") +
+  ylab("PC2 (10.04%)")
 #-----------------------------
 # Habitat
 #-----------------------------
@@ -96,7 +98,9 @@ p2 <-
   geom_vline(xintercept = 0, linetype = 2) +
   geom_hline(yintercept = 0, linetype = 2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15)
+  ylim(-0.15, 0.15) +
+  xlab("PC1 (15.70%)") +
+  ylab("PC2 (10.04%)")
 
 #-----------------------------
 # Diet
@@ -117,7 +121,9 @@ p3 <-
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
     xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15)
+    ylim(-0.15, 0.15) +
+    xlab("PC1 (15.70%)") +
+    ylab("PC2 (10.04%)")
 
 #-----------------------------
 # Feeding
@@ -138,7 +144,9 @@ p4 <-
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
     xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15)
+    ylim(-0.15, 0.15) +
+    xlab("PC1 (15.70%)") +
+    ylab("PC2 (10.04%)")
 
 #-----------------------------
 # divetype
@@ -159,7 +167,9 @@ p5 <-
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
     xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15)
+    ylim(-0.15, 0.15) +
+    xlab("PC1 (15.70%)") +
+    ylab("PC2 (10.04%)")
 
 #-----------------------------
 # hearingtype
@@ -180,7 +190,9 @@ p6 <-
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
     xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15)
+    ylim(-0.15, 0.15) +
+    xlab("PC1 (15.70%)") +
+    ylab("PC2 (10.04%)")
 
 p1 / p2 / p3 
 
