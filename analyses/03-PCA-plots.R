@@ -46,7 +46,9 @@ p1 <-
   geom_polygon(data = hulls_12[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15)
+  ylim(-0.15, 0.15) +
+  xlab("PC1 (15.70%)") +
+  ylab("PC2 (10.04%)")
 
 p2 <-
   ggplot(pc_data, aes(x = PC1, y = PC3, col = group)) +
@@ -59,7 +61,9 @@ p2 <-
   geom_polygon(data = hulls_13[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) 
+  ylim(-0.15, 0.15) +
+  xlab("PC1 (15.70%)") +
+  ylab("PC3 (8.943%)")
 
 p3 <-
   ggplot(pc_data, aes(x = PC2, y = PC3, col = group)) +
@@ -72,7 +76,9 @@ p3 <-
   geom_polygon(data = hulls_23[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) 
+  ylim(-0.15, 0.15) +
+  xlab("PC2 (10.04%)") +
+  ylab("PC3 (8.943%)")
 
 p4 <-
   ggplot(pc_data, aes(x = PC2, y = PC8, col = group)) +
@@ -85,7 +91,9 @@ p4 <-
   geom_polygon(data = hulls_28[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15)
+  ylim(-0.15, 0.15) +
+  xlab("PC2 (10.04%)") +
+  ylab("PC8 (3.590%)")
   
 p5 <-
   ggplot(pc_data, aes(x = PC3, y = PC8, col = group)) +
@@ -98,7 +106,9 @@ p5 <-
   geom_polygon(data = hulls_38[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
   xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15)
+  ylim(-0.15, 0.15) +
+  xlab("PC3 (8.943%)") +
+  ylab("PC8 (3.590%)")
 
 all <- grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
 
