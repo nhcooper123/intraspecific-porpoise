@@ -136,8 +136,8 @@ ggsave(all, filename = here("outputs/PC-polygon-plots-linear.png"))
 pc_dataX <- 
   pc_data %>%
   gather(PC, score, PC1:PC9) %>%
-  select(taxon, group2, PC, score) %>%
-  mutate(group2 = paste(group2, sep = "_")) %>%
+  select(taxon, group, PC, score) %>%
+  mutate(group2 = paste(group, sep = "_")) %>%
   mutate(PC = factor(PC,  levels = c("PC1", "PC2", "PC3", "PC4", 
                                   "PC5", "PC6", "PC7", "PC8", "PC9")))
 

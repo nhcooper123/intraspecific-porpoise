@@ -96,7 +96,7 @@ gdf <- geomorph.data.frame(intra_gpa,
 fit1 <- procD.lm(coords ~ group, 
                  data = gdf, iter = 999, 
                  RRPP = FALSE, print.progress = FALSE) 
-fit1
+summary(fit1)
 
 # Randomize residuals result will be the same
 # as there is just one explanatory variable.
