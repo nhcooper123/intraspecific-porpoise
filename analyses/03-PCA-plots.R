@@ -37,7 +37,7 @@ hulls_38 <- make_hull(pc_data, pc1 = 18, pc2 = 23, n = 2, grouping_var = 5)
 
 p1 <-
   ggplot(pc_data, aes(x = PC1, y = PC2, col = group)) +
-  geom_point(size = 2, alpha = 0.8) +
+  geom_point(size = 1, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
@@ -52,7 +52,7 @@ p1 <-
 
 p2 <-
   ggplot(pc_data, aes(x = PC1, y = PC3, col = group)) +
-  geom_point(size = 2, alpha = 0.8) +
+  geom_point(size = 1, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
@@ -67,7 +67,7 @@ p2 <-
 
 p3 <-
   ggplot(pc_data, aes(x = PC2, y = PC3, col = group)) +
-  geom_point(size = 2, alpha = 0.8) +
+  geom_point(size = 1, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
@@ -82,7 +82,7 @@ p3 <-
 
 p4 <-
   ggplot(pc_data, aes(x = PC2, y = PC8, col = group)) +
-  geom_point(size = 2, alpha = 0.8) +
+  geom_point(size = 1, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
@@ -97,7 +97,7 @@ p4 <-
   
 p5 <-
   ggplot(pc_data, aes(x = PC3, y = PC8, col = group)) +
-  geom_point(size = 2, alpha = 0.8) +
+  geom_point(size = 1, alpha = 0.8) +
   scale_color_manual(values = c("#008080", "#911eb4")) +
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
