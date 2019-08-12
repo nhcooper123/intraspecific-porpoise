@@ -5,6 +5,7 @@
 
 *.DS_Store
 *.html
+outputs/rarefied-MANOVA-results-landmarks.csv
 
 # LaTeX #
 *.aux
