@@ -66,6 +66,10 @@ out <- c(out, combn(porpoises, z, simplify = FALSE))
 # Sample number of porpoises
 # and get PC values then run MANOVAs
 # and output stats
+
+#### WARNING this takes a long time to run####
+#### i.e. about a week ######
+#### Output is available on the NHM Data Portal####ß
 #-----------------------------------------
 # Create MANOVA output file
 MANOVA_output <- create_MANOVA_output(length(out))
