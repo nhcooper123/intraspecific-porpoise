@@ -68,7 +68,7 @@ intra_pca <- plotTangentSpace(intra_gpa$coords, legend = TRUE, label = TRUE,
                               warpgrids = FALSE)
 
 # Look at how PCs explain variance
-# Here we need 39 PCs to explain > 95%
+# Here we need 26 PCs to explain > 95%
 intra_pca$pc.summary
 
 # Extract PC scores and make .pts file name into
