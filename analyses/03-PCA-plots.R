@@ -4,7 +4,7 @@
 # May 2019
 #-------------------------------------------
 
-# Significant PCs from ANOVA are 2, 3 and 8
+# Significant PCs from ANOVA are 1 and 3
 
 #------------------------------------
 # Load libraries
@@ -31,9 +31,6 @@ pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
 hulls_12 <- make_hull(pc_data, pc1 = 16, pc2 = 17, n = 2, grouping_var = 5)
 hulls_13 <- make_hull(pc_data, pc1 = 16, pc2 = 18, n = 2, grouping_var = 5)
 hulls_23 <- make_hull(pc_data, pc1 = 17, pc2 = 18, n = 2, grouping_var = 5)
-hulls_28 <- make_hull(pc_data, pc1 = 17, pc2 = 23, n = 2, grouping_var = 5)
-hulls_38 <- make_hull(pc_data, pc1 = 18, pc2 = 23, n = 2, grouping_var = 5)
-
 
 p1 <-
   ggplot(pc_data, aes(x = PC1, y = PC2, col = group)) +
@@ -45,10 +42,10 @@ p1 <-
   geom_hline(yintercept = 0, linetype = 2) +
   geom_polygon(data = hulls_12[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC1 (15.70%)") +
-  ylab("PC2 (10.04%)")
+  xlim(-0.4, 0.25) +
+  ylim(-0.18, 0.18) +
+  xlab("PC1 (34.08%)") +
+  ylab("PC2 (12.15%)")
 
 p2 <-
   ggplot(pc_data, aes(x = PC1, y = PC3, col = group)) +
@@ -60,10 +57,10 @@ p2 <-
   geom_hline(yintercept = 0, linetype = 2) +
   geom_polygon(data = hulls_13[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC1 (15.70%)") +
-  ylab("PC3 (8.943%)")
+  xlim(-0.4, 0.25) +
+  ylim(-0.18, 0.18) +
+  xlab("PC1 (34.08%)") +
+  ylab("PC3 (8.956%)")
 
 p3 <-
   ggplot(pc_data, aes(x = PC2, y = PC3, col = group)) +
@@ -75,42 +72,12 @@ p3 <-
   geom_hline(yintercept = 0, linetype = 2) +
   geom_polygon(data = hulls_23[["Phocoena_phocoena"]], aes(x = x, y = y), 
                col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
-  xlim(-0.2, 0.15) +
+  xlim(-0.2, 0.2) +
   ylim(-0.15, 0.15) +
-  xlab("PC2 (10.04%)") +
-  ylab("PC3 (8.943%)")
+  xlab("PC2 (12.15%)") +
+  ylab("PC3 (8.956%)")
 
-p4 <-
-  ggplot(pc_data, aes(x = PC2, y = PC8, col = group)) +
-  geom_point(size = 1, alpha = 0.8) +
-  scale_color_manual(values = c("#008080", "#911eb4")) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
-  geom_vline(xintercept = 0, linetype = 2) +
-  geom_hline(yintercept = 0, linetype = 2) +
-  geom_polygon(data = hulls_28[["Phocoena_phocoena"]], aes(x = x, y = y), 
-               col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC2 (10.04%)") +
-  ylab("PC8 (3.590%)")
-  
-p5 <-
-  ggplot(pc_data, aes(x = PC3, y = PC8, col = group)) +
-  geom_point(size = 1, alpha = 0.8) +
-  scale_color_manual(values = c("#008080", "#911eb4")) +
-  theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
-  geom_vline(xintercept = 0, linetype = 2) +
-  geom_hline(yintercept = 0, linetype = 2) +
-  geom_polygon(data = hulls_38[["Phocoena_phocoena"]], aes(x = x, y = y), 
-               col = "#911eb4", fill = "#911eb4", alpha = 0.2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC3 (8.943%)") +
-  ylab("PC8 (3.590%)")
-
-all <- grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
+all <- grid.arrange(p1, p2, p3, nrow = 2)
 
 ggsave(all, filename = here("outputs/PC-polygon-plots-landmarks.png"))
 #-------------------------------------------

@@ -75,10 +75,10 @@ p1 <-
   guides(shape = FALSE) +
   geom_vline(xintercept = 0, linetype = 2) +
   geom_hline(yintercept = 0, linetype = 2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC1 (15.70%)") +
-  ylab("PC2 (10.04%)")
+  xlim(-0.4, 0.25) +
+  ylim(-0.18, 0.18) +
+  xlab("PC1 (34.08%)") +
+  ylab("PC2 (12.15%)")
 #-----------------------------
 # Habitat
 #-----------------------------
@@ -97,10 +97,10 @@ p2 <-
   guides(shape = FALSE) +
   geom_vline(xintercept = 0, linetype = 2) +
   geom_hline(yintercept = 0, linetype = 2) +
-  xlim(-0.2, 0.15) +
-  ylim(-0.15, 0.15) +
-  xlab("PC1 (15.70%)") +
-  ylab("PC2 (10.04%)")
+  xlim(-0.4, 0.25) +
+  ylim(-0.18, 0.18) +
+  xlab("PC1 (34.08%)") +
+  ylab("PC2 (12.15%)")
 
 #-----------------------------
 # Diet
@@ -120,10 +120,10 @@ p3 <-
     guides(shape = FALSE) +
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
-    xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15) +
-    xlab("PC1 (15.70%)") +
-    ylab("PC2 (10.04%)")
+    xlim(-0.4, 0.25) +
+    ylim(-0.18, 0.18) +
+    xlab("PC1 (34.08%)") +
+    ylab("PC2 (12.15%)")
 
 #-----------------------------
 # Feeding
@@ -143,10 +143,10 @@ p4 <-
     guides(shape = FALSE) +
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
-    xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15) +
-    xlab("PC1 (15.70%)") +
-    ylab("PC2 (10.04%)")
+    xlim(-0.4, 0.25) +
+    ylim(-0.18, 0.18) +
+    xlab("PC1 (34.08%)") +
+    ylab("PC2 (12.15%)")
 
 #-----------------------------
 # divetype
@@ -166,10 +166,10 @@ p5 <-
     guides(shape = FALSE) +
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
-    xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15) +
-    xlab("PC1 (15.70%)") +
-    ylab("PC2 (10.04%)")
+    xlim(-0.4, 0.25) +
+    ylim(-0.18, 0.18) +
+    xlab("PC1 (34.08%)") +
+    ylab("PC2 (12.15%)")
 
 #-----------------------------
 # hearingtype
@@ -189,10 +189,10 @@ p6 <-
     guides(shape = FALSE) +
     geom_vline(xintercept = 0, linetype = 2) +
     geom_hline(yintercept = 0, linetype = 2) +
-    xlim(-0.2, 0.15) +
-    ylim(-0.15, 0.15) +
-    xlab("PC1 (15.70%)") +
-    ylab("PC2 (10.04%)")
+    xlim(-0.4, 0.25) +
+    ylim(-0.18, 0.18) +
+    xlab("PC1 (34.08%)") +
+    ylab("PC2 (12.15%)")
 
 p1 / p2 / p3 
 

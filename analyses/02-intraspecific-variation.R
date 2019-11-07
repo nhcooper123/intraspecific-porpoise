@@ -26,8 +26,8 @@ pc_data <- read_csv(here("data/odontocete-data-landmarks.csv"))
 # is significantly less than within the clade
 #----------------------------------------------------------
 # Fit the model for all odontocetes
-# Column 16 = PC1, column 54 = PC39 (95% of variation)
-model1 <- manova(as.matrix(pc_data[, 16:54]) ~ group, data = pc_data)
+# Column 16 = PC1, column 41 = PC26 (95% of variation)
+model1 <- manova(as.matrix(pc_data[, 16:41]) ~ group, data = pc_data)
 # Look at overall model significance
 anova(model1)
 
@@ -49,11 +49,11 @@ write_csv(path = here("outputs/MANOVA-results-landmarks.csv"), output)
 # Fit ANOVAs for each individual PC
 #--------------------------------------------
 
-# List names of first 39 PCs
-pc_list <- names(pc_data)[16:54]
+# List names of first 26 PCs
+pc_list <- names(pc_data)[16:41]
 
 # Create an output file for three subsets
-output <- data.frame(array(dim = c(39, 5)))
+output <- data.frame(array(dim = c(26, 5)))
 names(output) <- c("PC", "df1", "df2", "F", "p")
 
 # Run ANOVAs
