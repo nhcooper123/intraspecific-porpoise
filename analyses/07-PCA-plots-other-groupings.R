@@ -155,6 +155,12 @@ pc_data5 <-
   pc_data %>%
   filter(!is.na(divetype))  
 
+# Fix up level ordering and spacing
+pc_data5$divetype2 <- factor(pc_data5$divetype, 
+                             levels = c("shallow", "mid", "deep", "verydeep"))
+
+pc_data5$divetype2 <- gsub("verydeep", "very deep", pc_data5$divetype2)
+
 p5 <- 
   ggplot(pc_data5, aes(x = PC1, y = PC2, col = divetype, shape = group)) +
   geom_point(size = 2, alpha = 0.8) +
@@ -169,7 +175,8 @@ p5 <-
     xlim(-0.4, 0.25) +
     ylim(-0.18, 0.18) +
     xlab("PC1 (34.08%)") +
-    ylab("PC2 (12.15%)")
+    ylab("PC2 (12.15%)") +
+    labs(col = "dive type")
 
 #-----------------------------
 # hearingtype
@@ -192,7 +199,8 @@ p6 <-
     xlim(-0.4, 0.25) +
     ylim(-0.18, 0.18) +
     xlab("PC1 (34.08%)") +
-    ylab("PC2 (12.15%)")
+    ylab("PC2 (12.15%)") +
+    labs(col = "hearing type")
 
 p1 / p2 / p3 
 
