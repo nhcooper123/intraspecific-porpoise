@@ -160,6 +160,8 @@ pc_data5$divetype2 <- factor(pc_data5$divetype,
                              levels = c("shallow", "mid", "deep", "verydeep"))
 
 pc_data5$divetype2 <- gsub("verydeep", "very deep", pc_data5$divetype2)
+pc_data5$divetype2 <- gsub("mid", "middle depth", pc_data5$divetype2)
+
 
 p5 <- 
   ggplot(pc_data5, aes(x = PC1, y = PC2, col = divetype, shape = group)) +
