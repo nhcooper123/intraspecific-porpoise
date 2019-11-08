@@ -119,11 +119,10 @@ measure <-
            specID != "NMBC111425" & specID != "SDSNH21212")
 
 # Select only phocoenids
-measure2 <- filter(measure,
-                   taxon == "Neophocaena_phocaenoides" | taxon == "Phocoena_dioptrica" | 
-                   taxon == "Phocoena sinus" | taxon == "Phocoena_spinipinnis" |
-                   taxon == "Phocoenoides dalli" | taxon == "Phocoena_phocoena")
-
+measure2 <- 
+  measure %>%
+  arrange(taxon) %>%
+  slice(c(27, 32:53))
 #--------------------------------
 # Principal Components Analysis
 # Variables are scaled and centred
