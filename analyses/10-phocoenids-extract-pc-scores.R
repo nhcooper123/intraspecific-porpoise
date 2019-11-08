@@ -1,4 +1,4 @@
-# Extract PC scores for just phocoenids
+# Extract PC scores for just Phocoena spp.
 # Using 3D landmark data
 # Nov 2019
 #------------------------------------
@@ -46,9 +46,9 @@ for (i in 1:length(ptslist)) {
 dimnames(ptsarray)[[3]] <- ptslist
 
 #---------------------------
-# Select just the phocoenids
+# Select just the Phocoena spp
 #---------------------------
-ptsarray2 <- ptsarray[, , c(27, 32:53)]
+ptsarray2 <- ptsarray[, , c(32:52)]
 
 #-----------------------
 # Input additional data
@@ -73,7 +73,7 @@ intra_pca2 <- plotTangentSpace(intra_gpa2$coords, legend = TRUE, label = TRUE,
                               warpgrids = FALSE)
 
 # Look at how PCs explain variance
-# Here we need 26 PCs to explain > 95%
+# Here we need 14 PCs to explain > 95%
 intra_pca2$pc.summary
 
 # Extract PC scores and make .pts file name into
@@ -84,7 +84,7 @@ pc_scores2 <- data.frame(filename = rownames(intra_pca2$pc.scores), intra_pca2$p
 pc_data2 <- right_join(ds, pc_scores2, by = "filename")
 
 # Write to file
-write_csv(pc_data2, path = here("data/phocoenid-data-landmarks.csv")) 
+write_csv(pc_data2, path = here("data/phocoena-data-landmarks.csv")) 
 #--------------------------------------------
 # Fit Procrustes ANOVAs to coordinates
 #--------------------------------------------
@@ -122,7 +122,7 @@ measure <-
 measure2 <- 
   measure %>%
   arrange(taxon) %>%
-  slice(c(27, 32:53))
+  slice(c(32:52))
 #--------------------------------
 # Principal Components Analysis
 # Variables are scaled and centred
@@ -146,4 +146,4 @@ pc_data3 <-
   rename_at(vars(starts_with("Comp.")), funs(str_replace(., "Comp.", "PC")))
 
 # Write to file
-write_csv(pc_data3, path = here("data/phocoenid-data-linear.csv")) 
+write_csv(pc_data3, path = here("data/phocoena-data-linear.csv")) 
