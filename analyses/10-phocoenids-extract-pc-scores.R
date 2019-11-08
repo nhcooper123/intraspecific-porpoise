@@ -85,11 +85,6 @@ pc_data2 <- right_join(ds, pc_scores2, by = "filename")
 
 # Write to file
 write_csv(pc_data2, path = here("data/phocoenid-data-landmarks.csv")) 
-
-# Quick plot
-ggplot(pc_data2, aes(PC1, PC2, colour = group)) +
-  geom_point()
-
 #--------------------------------------------
 # Fit Procrustes ANOVAs to coordinates
 #--------------------------------------------
@@ -105,3 +100,51 @@ summary(fit1)
 
 # Randomize residuals result will be the same
 # as there is just one explanatory variable.
+
+#----------------------------------------------------
+# LINEAR MEASUREMENTS
+#----------------------------------------------------
+
+#--------------------------------------------
+# Input measurement data
+#--------------------------------------------
+measure <- read_csv("raw-data/cochlea-measurements.csv")
+
+# Exclude maxRadius due to missing data
+measure <-
+  measure %>%
+  select(-maxRadius) %>%
+  # remove for now
+  filter(specID != "NMNH572016" & specID !="NMNH571892" &
+           specID != "NMBC111425" & specID != "SDSNH21212")
+
+# Select only phocoenids
+measure2 <- filter(measure,
+                   taxon == "Neophocaena_phocaenoides" | taxon == "Phocoena_dioptrica" | 
+                   taxon == "Phocoena sinus" | taxon == "Phocoena_spinipinnis" |
+                   taxon == "Phocoenoides dalli" | taxon == "Phocoena_phocoena")
+
+#--------------------------------
+# Principal Components Analysis
+# Variables are scaled and centred
+#-------------------------------
+intra_pca3 <- princomp(measure2[, 4:15], cor = TRUE)
+
+# Look at how PCs explain variance
+# Here we need 7 PCs to explain > 95%
+summary(intra_pca3)
+
+# Extract PC scores and make .pts file name into
+# a taxon column for combining with the metadata
+pc_scores3 <- data.frame(specID = measure2$specID, intra_pca3$scores)
+
+# Merge with metadata
+pc_data3 <- right_join(ds, pc_scores3, by = "specID")
+
+# Rename Comp.1 to PC1 etc.
+pc_data3 <-
+  pc_data3 %>%
+  rename_at(vars(starts_with("Comp.")), funs(str_replace(., "Comp.", "PC")))
+
+# Write to file
+write_csv(pc_data3, path = here("data/phocoenid-data-linear.csv")) 
