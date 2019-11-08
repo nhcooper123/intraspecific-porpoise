@@ -1,6 +1,6 @@
 # Test whether intraspecific variation 
 # in Phocoena phocoena is higher/lower
-# than intraspecific variation
+# than interspecific variation
 # Using 3D landmark data
 # May 2019
 #------------------------------------
