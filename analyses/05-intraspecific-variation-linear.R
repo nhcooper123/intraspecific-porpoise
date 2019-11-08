@@ -1,6 +1,6 @@
 # Test whether intraspecific variation 
 # in Phocoena phocoena is higher/lower
-# than intraspecific variation
+# than interspecific variation
 # Using linear measurements
 # June 2019
 #------------------------------------
