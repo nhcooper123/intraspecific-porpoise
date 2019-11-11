@@ -32,6 +32,12 @@ All code used to run analyses and make figures is included in the `analyses/` fo
 * **07-PCA-plots-other-groupings.R** creates plots and runs MANOVAs demonstrating how species vary in relation to taxonomic family and various ecological groupings. 
 * **08-rarefaction-analyses.R** runs a sensitivity analysis repeating the MANOVAs for each possible combination of *Phocoena phocoena* specimens. 
 * **09-rarefaction-plots.R** creates plots for the above. 
+* **10-phocoena-extract-pc-scores.R** as script 01 and 04, but **only** for *Phocoena* spp. 
+* **11-phocoena-intraspecific-variation.R** as script 05, but **only** for *Phocoena* spp. 
+* **12-p.phocoena-only-extract-pc-scores.R** as script 01 and 04, but **only** for *Phocoena phocoena* specimens.
+* **13-extra-phocoena-analyses.R** fits MANOVAs to determine if variation in *Phocoena phocoena* cochlear shape correlates significantly with the sex, origin, skull size of the specimens, or the side of the head the cochela came from, using 3D shape data and linear measurements.
+* **14-remove-NA-extract-pc-scores.R** as script 01 and 04, but removing the one North Atlantic *Phocoena phocoena* specimen.
+* **15-remove-NA-intraspecific-variation.R** as script 05, but removing the one North Atlantic *Phocoena phocoena* specimen.
 
 ## Session Info
 For reproducibility purposes, here is the output of `devtools:session_info()` used to perform the analyses in the publication.
@@ -47,7 +53,7 @@ For reproducibility purposes, here is the output of `devtools:session_info()` us
     collate  en_IE.UTF-8                 
     ctype    en_IE.UTF-8                 
     tz       Europe/Dublin               
-    date     2019-08-12                  
+    date     2019-11-11                  
 
     Packages ────────────────────────────────────────────────────────────────────────────────────
     package           * version    date       lib source                              
@@ -196,6 +202,6 @@ For reproducibility purposes, here is the output of `devtools:session_info()` us
 To rerun all the code with packages as they existed on CRAN at time of our analyses we recommend using the `checkpoint` package, and running this code prior to the analysis:
 
 ```{r}
-checkpoint("2019-08-12")
+checkpoint("2019-11-11")
 ```
 
