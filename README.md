@@ -9,6 +9,8 @@ To cite the paper:
 To cite this repo: 
 > XXX
 
+![alt text](https://github.com/nhcooper123/intraspecific-porpoise/raw/master/outputs/PC-polygon-plots-landmarks.png)
+
 ## Data
 These analyses are based on CT scans of cochlea specimens from natural history collections.
 CT scans are attached to each specimen on the [NHM Data Portal](https://data.nhm.ac.uk).
