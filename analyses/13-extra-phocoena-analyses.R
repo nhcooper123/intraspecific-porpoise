@@ -72,3 +72,5 @@ anova(model3)
 model4 <- manova(as.matrix(pc_data3[, 16:22]) ~ log(cbl), data = pc_data3)
 # Look at overall model significance
 anova(model4)
+
+p.adjust(p = c(0.765, 0.291, 0.566, 0.359), method = "bonferroni")
