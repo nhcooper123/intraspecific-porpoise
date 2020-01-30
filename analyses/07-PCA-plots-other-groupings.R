@@ -166,7 +166,7 @@ pc_data5$divetype2 <- factor(pc_data5$divetype,
 
 
 p5 <- 
-  ggplot(pc_data5, aes(x = PC1, y = PC2, col = divetype, shape = group)) +
+  ggplot(pc_data5, aes(x = PC1, y = PC2, col = divetype2, shape = group)) +
   geom_point(size = 2, alpha = 0.8) +
     scale_color_manual(values = c(colours[c(3,5)], pho_col, colours[c(9)])) +
     theme_bw(base_size = 14) +
