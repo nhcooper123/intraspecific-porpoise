@@ -4,10 +4,12 @@ Author(s): Maria Clara Iruzun Martins, Travis Park, Rachael Racicot and [Natalie
 This repository contains all the code and data used in the [paper](link).
 
 To cite the paper: 
-> XXX
+> Maria Clara Iruzun Martins, Travis Park, Rachel Racicot and Natalie Cooper. 2020. Intraspecific variation in the cochleae of harbour porpoises (*Phocoena phocoena*) and its implications for comparative studies across odontocetes. In review.
 
 To cite this repo: 
-> XXX
+> Natalie Cooper, Maria Clara Iruzun Martins, and Travis Park. 2020. GitHub: nhcooper123/intraspecific-porpoise: code for the paper. Zenodo. DOI: 10.5281/zenodo.3693950.
+
+[![DOI](https://zenodo.org/badge/184577892.svg)](https://zenodo.org/badge/latestdoi/184577892)
 
 ![alt text](https://github.com/nhcooper123/intraspecific-porpoise/raw/master/outputs/PC-polygon-plots-landmarks.png)
 
